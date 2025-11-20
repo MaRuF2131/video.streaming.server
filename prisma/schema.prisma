@@ -1,0 +1,84 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+/**
+ * NOTE:
+ * - MongoDB uses ObjectId for primary keys.
+ * - We use: @id @default(auto()) @map("_id") @db.ObjectId
+ */
+
+model User {
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  email    String  @unique
+  photoUrl String?
+
+  roomTables RoomTable[]
+  messages   Message[]   @relation("UserMessages")
+
+  createdAt DateTime @default(now())
+}
+
+model RoomTable {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  category String
+
+  createdById String @db.ObjectId
+  createdBy   User   @relation(fields: [createdById], references: [id])
+
+  // ONE RoomTable → MANY UploadTables
+  uploadTables UploadTable[]
+
+  createdAt DateTime @default(now())
+}
+
+model UploadTable {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  title          String
+  description    String
+  videoFilesList String[]
+
+  chatListId String?   @unique @db.ObjectId
+  chatList   ChatList? @relation(fields: [chatListId], references: [id])
+
+  roomTableId String    @db.ObjectId
+  roomTable   RoomTable @relation(fields: [roomTableId], references: [id])
+
+  rating    Int?
+  createdAt DateTime @default(now())
+}
+
+model ChatList {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  // ONE ChatList → MANY Messages
+  messages Message[]
+
+  // ChatList belongs to ONE UploadTable
+  uploadTable UploadTable? @relation
+
+  createdAt DateTime @default(now())
+}
+
+model Message {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  message   String
+  messageAt DateTime @default(now())
+
+  // Message belongs to User
+  messageById String @db.ObjectId
+  messageBy   User   @relation("UserMessages", fields: [messageById], references: [id])
+
+  // Message belongs to ChatList
+  chatListId String?   @db.ObjectId
+  chatList   ChatList? @relation(fields: [chatListId], references: [id])
+}

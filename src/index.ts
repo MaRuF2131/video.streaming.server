@@ -1,4 +1,4 @@
 import app from './server';
-app.listen(3000,()=>{
-    console.log("server running ");   
+app.listen(5000,()=>{
+    console.log("server running 5000");   
 })

@@ -23,6 +23,7 @@ export const roomController = {
 
       res.status(201).json(roomTable);
     } catch (error) {
+      console.log(error);     
       res
         .status(500)
         .json({ message: "Failed to create RoomTable", error });

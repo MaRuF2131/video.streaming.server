@@ -1,8 +1,10 @@
 import helmet from "helmet";
 import cors from "cors";
 import { sanitizeMiddleware } from "../utils/sanitizer";
+import { apiLimiter } from "../middlewares/rateLimit.middleware";
 
 export const security = (app: any) => {
+  app.use(apiLimiter)
   app.use(helmet());
 
   app.use(

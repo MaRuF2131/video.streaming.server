@@ -11,7 +11,7 @@ export const roomService = {
     return prisma.roomTable.create({
       data,
       include: {
-        createdBy: true,
+       /*  createdBy: true, */ // after user module is ready uncomment this
         uploadTables: true,
       },
     }) as unknown as RoomTable;

@@ -15,6 +15,8 @@ export const isValidEmail = (v: any) =>
 
 export const isValidNumber = (v: any, min?: number, max?: number) => {
     const num = Number(v);
+    console.log("num",num);
+    
     if (isNaN(num)) return false;
     if (min !== undefined && num < min) return false;
     if (max !== undefined && num > max) return false;

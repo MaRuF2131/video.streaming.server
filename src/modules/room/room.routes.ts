@@ -13,14 +13,14 @@ const router = Router();
 
 // CREATE ROOM
 router.post(
-  "/",
+  "/create",
   validateRequest(createRoomRules),
   roomController.create
 );
 
 // LIST ROOM + PAGINATION
 router.get(
-  "/",
+  "/get",
   validateRequest(listRoomRules),
   roomController.list
 );

@@ -15,7 +15,8 @@ export const validateRequest = (
             ...req.params,
             ...req.query,
         };
-
+        console.log("combinedData",combinedData);
+        
         // dangerous content check
         const danger = await containsDangerousContent(combinedData);
 

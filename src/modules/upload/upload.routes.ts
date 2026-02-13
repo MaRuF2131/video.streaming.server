@@ -7,7 +7,7 @@ import {
   updateUploadRules,
   idParamRules,
   listUploadRules,
-} from "./upload.rules.validation";
+} from "../../validationRules/upload.rules.validation";
 
 const router = Router();
 

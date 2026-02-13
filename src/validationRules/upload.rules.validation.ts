@@ -1,4 +1,4 @@
-import { isRequired, isValidNumber, isValidString } from "../../utils/validation";
+import { isRequired, isValidNumber, isValidString } from "../utils/validation";
 import validator from "validator";
 
 /* ============================================================

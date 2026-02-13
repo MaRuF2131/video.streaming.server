@@ -7,7 +7,7 @@ import {
   updateRoomRules,
   idParamRules,
   listRoomRules
-} from "./room.rules.validation";
+} from "../../validationRules/room.rules.validation";
 
 const router = Router();
 

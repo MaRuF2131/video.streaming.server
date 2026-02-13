@@ -7,7 +7,7 @@ import { UploadTable } from "./upload.types";
 export const uploadController = {
 
   // ================================
-  // 📌 Create Upload
+  //  Create Upload
   // ================================
   async create(req: Request, res: Response) {
     try {
@@ -47,7 +47,7 @@ export const uploadController = {
   },
 
   // ================================
-  // 📌 List Uploads (with Pagination)
+  //  List Uploads (with Pagination)
   // ================================
   async list(req: Request, res: Response) {
     try {
@@ -77,7 +77,7 @@ export const uploadController = {
   },
 
   // ================================
-  // 📌 Update Upload
+  //  Update Upload
   // ================================
   async update(req: Request, res: Response) {
     try {
@@ -96,7 +96,7 @@ export const uploadController = {
   },
 
   // ================================
-  // 📌 Delete Upload
+  //  Delete Upload
   // ================================
   async remove(req: Request, res: Response) {
     try {

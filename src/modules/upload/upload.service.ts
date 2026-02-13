@@ -5,9 +5,7 @@ import { paginate } from "../../utils/pagination";
 import { UploadTable } from "./upload.types";
 
 export const uploadService = {
-  // =====================================
-  // 📌 CREATE UploadTable
-  // =====================================
+  //  CREATE UploadTable
   async createUpload(data: {
     name: string;
     title: string;
@@ -26,9 +24,7 @@ export const uploadService = {
     }) as unknown as UploadTable;
   },
 
-  // =====================================
-  // 📌 PAGINATED UploadTable LIST
-  // =====================================
+  //  PAGINATED UploadTable LIST
   async getPaginatedUploads(
     query?: { roomTableId?: string; chatListId?: string },
     page: number = 1,
@@ -72,9 +68,8 @@ export const uploadService = {
     );
   },
 
-  // =====================================
-  // 📌 UPDATE UploadTable
-  // =====================================
+
+  //  UPDATE UploadTable
   async updateUpload(
     id: string,
     data: Partial<UploadTable>
@@ -89,9 +84,7 @@ export const uploadService = {
     }) as unknown as UploadTable;
   },
 
-  // =====================================
-  // 📌 DELETE Upload
-  // =====================================
+  //  DELETE Upload
   async deleteUpload(id: string): Promise<UploadTable> {
     return prisma.uploadTable.delete({
       where: { id },

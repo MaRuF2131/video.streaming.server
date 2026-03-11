@@ -155,7 +155,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "D:\\test typeScript\\src\\generated\\prisma",
+      "value": "D:\\test typeScript\\youtube\\src\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -166,14 +166,22 @@ const config = {
         "fromEnvVar": null,
         "value": "windows",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "debian-openssl-3.0.x"
+      },
+      {
+        "fromEnvVar": null,
+        "value": "rhel-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "D:\\test typeScript\\prisma\\schema.prisma",
+    "sourceFilePath": "D:\\test typeScript\\youtube\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../../../.env",
+    "rootEnvPath": null,
     "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../../../prisma",
@@ -192,8 +200,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"mongodb\"\n  url      = env(\"DATABASE_URL\")\n}\n\n/**\n * NOTE:\n * - MongoDB uses ObjectId for primary keys.\n * - We use: @id @default(auto()) @map(\"_id\") @db.ObjectId\n */\n\nmodel User {\n  id       String  @id @default(auto()) @map(\"_id\") @db.ObjectId\n  name     String\n  email    String  @unique\n  photoUrl String?\n\n  roomTables RoomTable[]\n  messages   Message[]   @relation(\"UserMessages\")\n\n  createdAt DateTime @default(now())\n}\n\nmodel RoomTable {\n  id       String @id @default(auto()) @map(\"_id\") @db.ObjectId\n  category String\n\n  createdById String @db.ObjectId\n  createdBy   User   @relation(fields: [createdById], references: [id])\n\n  // ONE RoomTable → MANY UploadTables\n  uploadTables UploadTable[]\n\n  createdAt DateTime @default(now())\n}\n\nmodel UploadTable {\n  id             String   @id @default(auto()) @map(\"_id\") @db.ObjectId\n  name           String\n  title          String\n  description    String\n  videoFilesList String[]\n\n  chatListId String?   @unique @db.ObjectId\n  chatList   ChatList? @relation(fields: [chatListId], references: [id])\n\n  roomTableId String    @db.ObjectId\n  roomTable   RoomTable @relation(fields: [roomTableId], references: [id])\n\n  rating    Int?\n  createdAt DateTime @default(now())\n}\n\nmodel ChatList {\n  id String @id @default(auto()) @map(\"_id\") @db.ObjectId\n\n  // ONE ChatList → MANY Messages\n  messages Message[]\n\n  // ChatList belongs to ONE UploadTable\n  uploadTable UploadTable? @relation\n\n  createdAt DateTime @default(now())\n}\n\nmodel Message {\n  id String @id @default(auto()) @map(\"_id\") @db.ObjectId\n\n  message   String\n  messageAt DateTime @default(now())\n\n  // Message belongs to User\n  messageById String @db.ObjectId\n  messageBy   User   @relation(\"UserMessages\", fields: [messageById], references: [id])\n\n  // Message belongs to ChatList\n  chatListId String?   @db.ObjectId\n  chatList   ChatList? @relation(fields: [chatListId], references: [id])\n}\n",
-  "inlineSchemaHash": "7a9db0575db63de8823089b3b3fb04d8f5a967a4ad4444284e673d6a6f9321cf",
+  "inlineSchema": "generator client {\n  provider      = \"prisma-client-js\"\n  output        = \"../src/generated/prisma\"\n  binaryTargets = [\"native\", \"debian-openssl-3.0.x\", \"rhel-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"mongodb\"\n  url      = env(\"DATABASE_URL\")\n}\n\n/**\n * NOTE:\n * - MongoDB uses ObjectId for primary keys.\n * - We use: @id @default(auto()) @map(\"_id\") @db.ObjectId\n */\n\nmodel User {\n  id       String  @id @default(auto()) @map(\"_id\") @db.ObjectId\n  name     String\n  email    String  @unique\n  photoUrl String?\n\n  roomTables RoomTable[]\n  messages   Message[]   @relation(\"UserMessages\")\n\n  createdAt DateTime @default(now())\n}\n\nmodel RoomTable {\n  id       String @id @default(auto()) @map(\"_id\") @db.ObjectId\n  category String\n\n  createdById String @db.ObjectId\n  createdBy   User   @relation(fields: [createdById], references: [id])\n\n  // ONE RoomTable → MANY UploadTables\n  uploadTables UploadTable[]\n\n  createdAt DateTime @default(now())\n}\n\nmodel UploadTable {\n  id             String   @id @default(auto()) @map(\"_id\") @db.ObjectId\n  name           String\n  title          String\n  description    String\n  videoFilesList String[]\n\n  chatListId String?   @unique @db.ObjectId\n  chatList   ChatList? @relation(fields: [chatListId], references: [id])\n\n  roomTableId String    @db.ObjectId\n  roomTable   RoomTable @relation(fields: [roomTableId], references: [id])\n\n  rating    Int?\n  createdAt DateTime @default(now())\n}\n\nmodel ChatList {\n  id String @id @default(auto()) @map(\"_id\") @db.ObjectId\n\n  // ONE ChatList → MANY Messages\n  messages Message[]\n\n  // ChatList belongs to ONE UploadTable\n  uploadTable UploadTable? @relation\n\n  createdAt DateTime @default(now())\n}\n\nmodel Message {\n  id String @id @default(auto()) @map(\"_id\") @db.ObjectId\n\n  message   String\n  messageAt DateTime @default(now())\n\n  // Message belongs to User\n  messageById String @db.ObjectId\n  messageBy   User   @relation(\"UserMessages\", fields: [messageById], references: [id])\n\n  // Message belongs to ChatList\n  chatListId String?   @db.ObjectId\n  chatList   ChatList? @relation(fields: [chatListId], references: [id])\n}\n",
+  "inlineSchemaHash": "6ae42400c7a97c797399bd35f6166c06d302a4ee7d884a65f992b1fde7b2c3f7",
   "copyEngine": true
 }
 config.dirname = '/'

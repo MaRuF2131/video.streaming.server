@@ -1,17 +1,23 @@
+// src/config/security.config.ts
 import helmet from "helmet";
 import cors from "cors";
 import { sanitizeMiddleware } from "../utils/sanitizer";
 import { apiLimiter } from "../middlewares/rateLimit.middleware";
 
 export const security = (app: any) => {
-  app.use(apiLimiter)
+  app.use(apiLimiter);
   app.use(helmet());
 
   app.use(
     cors({
-      origin: ["http://localhost:3000"],
-      credentials: true,
+      origin: [
+        "http://localhost:3000",                   // dev frontend
+        "https://video-streaming-frontend.vercel.app" // production frontend
+      ],
+      credentials: true, // allow cookies
+      methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // allowed methods
     })
   );
+
   app.use(sanitizeMiddleware());
 };

@@ -4,34 +4,27 @@ import roomRoutes from "./modules/room/room.routes";
 import { sanitizeMiddleware } from "./utils/sanitizer";
 import { errorHandler } from "./middlewares/error.middleware";
 import uploadRoutes from './modules/upload/upload.routes';
-import {Login} from './auth/login'
+import { Login } from './auth/login';
 import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
-
 app.use(express.json());
 
 // Apply global security headers
 security(app);
 
-
-app.get('/',async(req:Request , res:Response )=>{
-    res.send('Hello, World!');
+// Test route
+app.get('/', async (req: Request, res: Response) => {
+  res.send('Hello, World!');
 });
 
-// auth
-app.use('/api/auth/login',Login)
-/* app.use("/api/rooms", roomRoutes); */
-app.use("/api/rooms",async (req:Request , res:Response , next)=>{
-    console.log("Rooms route accessed");
-    next();
-}, roomRoutes);
+// Auth route
+app.post('/api/auth/login', Login);
 
-app.use("/api/uploads",async (req:Request , res:Response , next)=>{
-    console.log("Uploads route accessed");
-    next();
-}, uploadRoutes);
+// Module routes
+app.use("/api/rooms", roomRoutes);
+app.use("/api/uploads", uploadRoutes);
 
 // Final error handler
 app.use(errorHandler);

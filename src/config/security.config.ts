@@ -8,14 +8,12 @@ export const security = (app: any) => {
   app.use(apiLimiter);
   app.use(helmet());
 
+  // ⚠️ Dev/Prototype: allow all origins
   app.use(
     cors({
-      origin: [
-        "http://localhost:3000",                   // dev frontend
-        "https://video-streaming-frontend.vercel.app" // production frontend
-      ],
+      origin: true, // allows all origins dynamically
       credentials: true, // allow cookies
-      methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // allowed methods
+      methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     })
   );
 

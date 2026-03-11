@@ -4,8 +4,11 @@ import jwt from "jsonwebtoken";
 
 export const Login = async (req: Request, res: Response) => {
   try {
-    const { name, email, photoUrl } = req.body;
 
+    console.log(req.body);
+    
+     const {id,name,email,image  } = req.body;
+    if( !name ||email ) res.status(401).json({ error: "Name and email both are required" });
     // user check
     let user = await prisma.user.findUnique({
       where: { email }
@@ -17,7 +20,7 @@ export const Login = async (req: Request, res: Response) => {
         data: {
           name,
           email,
-          photoUrl
+          photoUrl:image
         }
       });
     }
@@ -37,7 +40,8 @@ export const Login = async (req: Request, res: Response) => {
       success: true,
       token,
       user
-    });
+    }); 
+
 
   } catch (error) {
     res.status(500).json({ error: "Login failed" });

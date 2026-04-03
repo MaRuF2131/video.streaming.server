@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { roomService } from "./room.service";
+import { roomService } from "../service/room.service";
 
 export const roomController = {
   // Create RoomTable

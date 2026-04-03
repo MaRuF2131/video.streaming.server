@@ -1,13 +1,13 @@
 import { Router } from "express";
-import { uploadController } from "./upload.controller";
-import { validateRequest } from "../../middlewares/validate.middleware";
+import { uploadController } from "../controller/upload.controller";
+import { validateRequest } from "../middlewares/validate.middleware";
 
 import {
   createUploadRules,
   updateUploadRules,
   idParamRules,
   listUploadRules,
-} from "../../validationRules/upload.rules.validation";
+} from "../validationRules/upload.rules.validation";
 
 const router = Router();
 

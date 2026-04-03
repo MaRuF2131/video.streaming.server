@@ -1,13 +1,13 @@
 import { Router } from "express";
-import { roomController } from "./room.controller";
-import { validateRequest } from "../../middlewares/validate.middleware";
+import { roomController } from "../controller/room.controller";
+import { validateRequest } from "../middlewares/validate.middleware";
 
 import {
   createRoomRules,
   updateRoomRules,
   idParamRules,
   listRoomRules
-} from "../../validationRules/room.rules.validation";
+} from "../validationRules/room.rules.validation";
 
 const router = Router();
 

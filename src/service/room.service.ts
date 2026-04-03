@@ -1,6 +1,6 @@
-import { prisma } from "../../utils/prisma";
-import { paginate } from "../../utils/pagination";
-import { RoomTable } from "./room.types";
+import { prisma } from "../utils/prisma";
+import { paginate } from "../utils/pagination";
+import { RoomTable } from "../types/room.types";
 
 export const roomService = {
   // Create RoomTable

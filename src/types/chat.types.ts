@@ -1,5 +1,5 @@
 // chat.types.ts
-import { UploadTable } from "../upload/upload.types";
+import { UploadTable } from "./upload.types";
 import { Message } from "./message.types";
 
 export interface ChatList {

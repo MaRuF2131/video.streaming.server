@@ -15,28 +15,62 @@ datasource db {
  */
 
 model User {
-  id       String  @id @default(auto()) @map("_id") @db.ObjectId
-  name     String
-  email    String  @unique
-  photoUrl String?
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
 
-  roomTables RoomTable[]
-  messages   Message[]   @relation("UserMessages")
+  // Basic Info
+  // firstName   String
+  // lastName    String?
+  name        String   // optional: full name (can be generated)
+  email       String   @unique
 
-  createdAt DateTime @default(now())
+  // Profile Media
+  photoUrl    String? // (optional: remove later if using profilePhoto)
+  coverPhoto   String?
+
+  // Contact Info
+  phone       String?
+  website     String?
+  location    String?
+
+  // Professional Info
+  jobTitle    String?
+  about       String?
+
+  // Social Links
+  facebook    String?
+  twitter     String?
+  linkedin    String?
+
+  // Existing Relations
+  roomTables  RoomTable[] @relation("UserRooms")
+  messages    Message[] @relation("UserMessages")
+
+  // Meta
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  //  Indexes
+  @@index([name])
+  @@index([phone])
 }
 
 model RoomTable {
-  id       String @id @default(auto()) @map("_id") @db.ObjectId
-  category String
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+
+  title      String
+  slug       String @unique
+  category   String
 
   createdById String @db.ObjectId
-  createdBy   User   @relation(fields: [createdById], references: [id])
+  createdBy   User   @relation("UserRooms", fields: [createdById], references: [id])
 
-  // ONE RoomTable → MANY UploadTables
   uploadTables UploadTable[]
 
-  createdAt DateTime @default(now())
+  createdAt  DateTime @default(now())
+
+  //  Indexes
+  @@index([createdById])
+  @@index([title])
 }
 
 model UploadTable {

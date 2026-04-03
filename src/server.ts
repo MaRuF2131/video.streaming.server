@@ -1,9 +1,9 @@
 import express, { Request, Response } from 'express'; 
 import { security } from "./config/security.config";
-import roomRoutes from "./modules/room/room.routes";
+import roomRoutes from "./routes/room.routes";
 import { sanitizeMiddleware } from "./utils/sanitizer";
 import { errorHandler } from "./middlewares/error.middleware";
-import uploadRoutes from './modules/upload/upload.routes';
+import uploadRoutes from './routes/upload.routes';
 import { Login } from './auth/login';
 import dotenv from 'dotenv';
 dotenv.config();

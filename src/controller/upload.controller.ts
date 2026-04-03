@@ -1,8 +1,8 @@
 // src/upload/upload.controller.ts
 
 import { Request, Response } from "express";
-import { uploadService } from "./upload.service";
-import { UploadTable } from "./upload.types";
+import { uploadService } from "../service/upload.service";
+import { UploadTable } from "../types/upload.types";
 
 export const uploadController = {
 

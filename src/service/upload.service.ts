@@ -1,8 +1,8 @@
 // src/upload/upload.service.ts
 
-import { prisma } from "../../utils/prisma";
-import { paginate } from "../../utils/pagination";
-import { UploadTable } from "./upload.types";
+import { prisma } from "../utils/prisma";
+import { paginate } from "../utils/pagination";
+import { UploadTable } from "../types/upload.types";
 
 export const uploadService = {
   //  CREATE UploadTable

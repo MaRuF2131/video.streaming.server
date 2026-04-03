@@ -1,6 +1,6 @@
 // upload.types.ts
-import { RoomTable } from "../room/room.types";
-import { ChatList } from "../chat/chat.types";
+import { RoomTable } from "./room.types";
+import { ChatList } from "./chat.types";
 
 export interface UploadTable {
   id: string;

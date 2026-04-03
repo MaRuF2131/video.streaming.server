@@ -1,5 +1,5 @@
-import { User } from "../user/user.types";
-import { UploadTable } from "../upload/upload.types";
+import { User } from "./user.types";
+import { UploadTable } from "./upload.types";
 
 export interface RoomTable {
   id: string;

@@ -19,7 +19,10 @@ export const Login = async (req: Request, res: Response) => {
       });
     }
 
-/*     const token = jwt.sign(
+    console.log("user",user);
+    
+
+     const token = jwt.sign(
       { id: user.id, name: user.name, email: user.email },
       process.env.JWT_SECRET!,
       { expiresIn: "7d" }
@@ -32,9 +35,10 @@ export const Login = async (req: Request, res: Response) => {
       sameSite: "lax",                        // CSRF mitigation
       path: "/",                              // cookie path
       maxAge: 7 * 24 * 60 * 60 * 1000,        // 7 days
-    }); */
+    }); 
+    // Optional: user object এ token attach করা (response body তে পাঠানোর জন্য)
 
-    return res.json({ success: true, user }); // token cookie এ already পাঠানো হয়েছে
+    return res.json({ success: true,  user: { ...user, token } }); // token cookie এ already পাঠানো হয়েছে
 
   } catch (error) {
     console.error("Login error:", error);

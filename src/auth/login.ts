@@ -38,7 +38,7 @@ export const Login = async (req: Request, res: Response) => {
     }); 
     // Optional: user object এ token attach করা (response body তে পাঠানোর জন্য)
 
-    return res.json({ success: true,  user: { ...user, token } }); // token cookie এ already পাঠানো হয়েছে
+    return res.json({ success: true,  user ,token  }); // token cookie এ already পাঠানো হয়েছে
 
   } catch (error) {
     console.error("Login error:", error);

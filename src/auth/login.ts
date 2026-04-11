@@ -19,7 +19,7 @@ export const Login = async (req: Request, res: Response) => {
       });
     }
 
-    const token = jwt.sign(
+/*     const token = jwt.sign(
       { id: user.id, name: user.name, email: user.email },
       process.env.JWT_SECRET!,
       { expiresIn: "7d" }
@@ -32,7 +32,7 @@ export const Login = async (req: Request, res: Response) => {
       sameSite: "lax",                        // CSRF mitigation
       path: "/",                              // cookie path
       maxAge: 7 * 24 * 60 * 60 * 1000,        // 7 days
-    });
+    }); */
 
     return res.json({ success: true, user }); // token cookie এ already পাঠানো হয়েছে
 

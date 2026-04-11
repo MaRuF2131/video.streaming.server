@@ -1,5 +1,5 @@
 // message.types.ts
-import { User } from "./user.types";
+import { IUser } from "./user.types";
 import { ChatList } from "./chat.types";
 
 export interface Message {
@@ -8,7 +8,7 @@ export interface Message {
   messageAt: Date;
 
   messageById: string;
-  messageBy?: User;
+  messageBy?: IUser;
 
   chatListId?: string;
   chatList?: ChatList;

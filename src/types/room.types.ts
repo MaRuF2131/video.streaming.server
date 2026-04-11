@@ -1,14 +1,14 @@
-import { User } from "./user.types";
-import { UploadTable } from "./upload.types";
+import type { IUser } from "./user.types";
+import type { UploadTable } from "./upload.types";
 
 export interface RoomTable {
   id: string;
   category: string;
 
   createdById: string;
-  createdBy?: User;
+  createdBy?: IUser; //  FIX
 
   uploadTables?: UploadTable[];
 
-  createdAt: Date;
+  createdAt?: Date;
 }

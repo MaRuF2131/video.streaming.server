@@ -4,18 +4,25 @@ import { RoomTable } from "../types/room.types";
 
 export const roomService = {
   // Create RoomTable
-  async createRoomTable(data: {
-    category: string;
-    createdById: string;
-  }): Promise<RoomTable> {
-    return prisma.roomTable.create({
-      data,
-      include: {
-       /*  createdBy: true, */ // after user module is ready uncomment this
-        uploadTables: true,
-      },
-    }) as unknown as RoomTable;
-  },
+    async createRoomTable(data: {
+      title: string;
+      category: string;
+      createdById: string;
+    }) {
+      const slug = data.title.toLowerCase().replace(/\s+/g, "-");
+
+      return prisma.roomTable.create({
+        data: {
+          title: data.title,
+          slug,
+          category: data.category,
+          createdById: data.createdById,
+        },
+        include: {
+          uploadTables: true,
+        },
+      });
+    },
 
   // Paginated RoomTable List
   async getPaginatedRoomTables(

@@ -17,6 +17,7 @@ export const roomController = {
       }
 
       const roomTable = await roomService.createRoomTable({
+        title: "Default Title", // You can modify this as needed
         category,
         createdById,
       });

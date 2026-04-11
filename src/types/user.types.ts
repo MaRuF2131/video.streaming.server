@@ -1,6 +1,6 @@
 // user.types.ts
-import { RoomTable } from "./room.types";
-import { Message } from "./message.types";
+import type { RoomTable } from "./room.types";
+import type { Message } from "./message.types";
 
 export interface IUser {
   id: string;
@@ -10,7 +10,7 @@ export interface IUser {
   name: string;
 
   email: string;
-  phone?: string;
+  phone?: string | null;
 
   // Profile Media
   photoUrl?: string | null;
@@ -41,36 +41,36 @@ export interface IUser {
 export interface CreateUserDTO {
   name: string;
   email: string;
-  phone?: string;
+  phone?: string | null;
 
-  photoUrl?: string;
-  coverPhoto?: string;
+  photoUrl?: string | null;
+  coverPhoto?: string | null;
 
-  website?: string;
-  location?: string;
+  website?: string | null;
+  location?: string | null;
 
-  jobTitle?: string;
-  about?: string;
+  jobTitle?: string | null;
+  about?: string | null;
 
-  facebook?: string;
-  twitter?: string;
-  linkedin?: string;
+  facebook?: string | null;
+  twitter?: string | null;
+  linkedin?: string | null;
 }
 
 export interface UpdateUserDTO {
   name?: string;
 
-  phone?: string;
-  photoUrl?: string;
-  coverPhoto?: string;
+  phone?: string | null;
+  photoUrl?: string | null;
+  coverPhoto?: string | null;
 
-  website?: string;
-  location?: string;
+  website?: string | null;
+  location?: string | null;
 
-  jobTitle?: string;
-  about?: string;
+  jobTitle?: string | null;
+  about?: string | null;
 
-  facebook?: string;
-  twitter?: string;
-  linkedin?: string;
+  facebook?: string | null;
+  twitter?: string | null;
+  linkedin?: string | null;
 }
